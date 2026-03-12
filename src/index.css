@@ -78,21 +78,19 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  border: 1px solid #38bdf8;
+  border: none;
+  outline: none;
   background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
   color: #e0f2fe;
   touch-action: none;
   user-select: none;
   box-shadow:
-    0 0 0 1px rgba(56, 189, 248, 0.35),
-    0 0 14px rgba(14, 165, 233, 0.7),
-    0 0 24px rgba(29, 78, 216, 0.5);
+    0 0 12px rgba(14, 165, 233, 0.55),
+    0 0 22px rgba(29, 78, 216, 0.35);
 }
 
 .debug-fab-icon {
-  font-size: 18px;
-  line-height: 1;
-  transform: translateY(0.5px);
+  display: block;
 }
 
 .debug-fab:active {

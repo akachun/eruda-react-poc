@@ -123,7 +123,18 @@ function App() {
           aria-label={isErudaOpen ? '디버그 닫기' : '디버그 열기'}
           title={isErudaOpen ? '디버그 닫기' : '디버그 열기'}
         >
-          <span className="debug-fab-icon">🛠️</span>
+          <svg
+            className="debug-fab-icon"
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            aria-hidden="true"
+          >
+            <path
+              fill="currentColor"
+              d="M21.67 18.17l-5.18-5.18a5.03 5.03 0 01-6.31-6.31l2.19 2.19 2.12-2.12-2.19-2.19a5.03 5.03 0 016.31 6.31l5.18 5.18a1.5 1.5 0 11-2.12 2.12zM7.5 13.5L3 18l3 3 4.5-4.5-3-3z"
+            />
+          </svg>
         </button>
       )}
     </main>
