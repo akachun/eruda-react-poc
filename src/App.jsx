@@ -127,8 +127,8 @@ function App() {
             className="debug-fab-icon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 120 120"
-            width="24"
-            height="24"
+            width="26"
+            height="26"
             aria-hidden="true"
           >
             <defs>

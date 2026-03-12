@@ -80,8 +80,8 @@ button:focus-visible {
   border-radius: 10px;
   border: none;
   outline: none;
-  background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
-  color: #e0f2fe;
+  background: linear-gradient(135deg, #4f86d9, #46b7ef);
+  color: #f3f9ff;
   touch-action: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
