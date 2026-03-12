@@ -67,19 +67,22 @@ button:focus-visible {
   }
 }
 
-/* Eruda floating button theme: blue glow */
-#eruda .eruda-entry-btn,
-.eruda-entry-btn {
-  background: linear-gradient(135deg, #1d4ed8, #0ea5e9) !important;
-  color: #e0f2fe !important;
-  border: 1px solid #38bdf8 !important;
+/* Custom debug FAB (Shadow DOM on: style app button instead of eruda internals) */
+.debug-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 999999;
+  border-radius: 999px;
+  border: 1px solid #38bdf8;
+  background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+  color: #e0f2fe;
   box-shadow:
     0 0 0 1px rgba(56, 189, 248, 0.35),
     0 0 14px rgba(14, 165, 233, 0.7),
-    0 0 24px rgba(29, 78, 216, 0.5) !important;
+    0 0 24px rgba(29, 78, 216, 0.5);
 }
 
-#eruda .eruda-entry-btn:active,
-.eruda-entry-btn:active {
+.debug-fab:active {
   filter: brightness(1.08) saturate(1.08);
 }

@@ -6,12 +6,16 @@ import App from './App.jsx'
 
 const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
 const forceDebug = new URLSearchParams(window.location.search).get('debug') === '1'
+const enableEruda = isMobile || forceDebug
 
-if (isMobile || forceDebug) {
+window.__ERUDA_ENABLED__ = enableEruda
+
+if (enableEruda) {
   eruda.init({
-    useShadowDom: false,
+    useShadowDom: true,
   })
-  console.log('[Eruda] mobile debug console enabled (shadow dom off)')
+  window.__ERUDA__ = eruda
+  console.log('[Eruda] enabled (shadow dom on)')
 }
 
 createRoot(document.getElementById('root')).render(
