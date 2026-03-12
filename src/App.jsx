@@ -125,17 +125,48 @@ function App() {
         >
           <svg
             className="debug-fab-icon"
-            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 120 120"
             width="18"
             height="18"
             aria-hidden="true"
           >
-            <path
-              fill="currentColor"
-              d="M22.1 19.3l-5.5-5.5a5.3 5.3 0 0 0 .7-5.8l-2.5 2.5-2.2-2.2 2.5-2.5a5.3 5.3 0 0 0-5.8.7L3.7.9 1 3.6l5.6 5.6a5.3 5.3 0 0 0-.7 5.8l2.5-2.5 2.2 2.2-2.5 2.5a5.3 5.3 0 0 0 5.8-.7l5.5 5.5a1.9 1.9 0 0 0 2.7-2.7z"
-            />
-            <circle cx="4.2" cy="4.2" r="1.25" fill="white" opacity="0.9" />
-            <circle cx="19.8" cy="19.8" r="1.25" fill="white" opacity="0.9" />
+            <defs>
+              <mask id="wrench-mask">
+                <rect width="120" height="120" fill="white" />
+                <g transform="rotate(45 60 60)">
+                  <circle cx="60" cy="90" r="4.5" fill="black" />
+                  <circle cx="60" cy="20" r="9" fill="black" />
+                  <rect x="51" y="0" width="18" height="20" fill="black" />
+                </g>
+              </mask>
+
+              <mask id="hammer-mask">
+                <rect width="120" height="120" fill="white" />
+                <g transform="rotate(-45 60 60)">
+                  <circle cx="60" cy="90" r="4.5" fill="black" />
+                  <circle cx="28" cy="24" r="10" fill="black" />
+                </g>
+                <g transform="rotate(45 60 60)">
+                  <rect x="46" y="45" width="28" height="30" fill="black" />
+                </g>
+              </mask>
+            </defs>
+
+            <g fill="currentColor" mask="url(#wrench-mask)">
+              <g transform="rotate(45 60 60)">
+                <rect x="52" y="25" width="16" height="75" rx="8" />
+                <circle cx="60" cy="20" r="16" />
+              </g>
+            </g>
+
+            <g fill="currentColor" mask="url(#hammer-mask)">
+              <g transform="rotate(-45 60 60)">
+                <rect x="52" y="25" width="16" height="75" rx="8" />
+                <rect x="30" y="14" width="45" height="18" rx="4" />
+                <rect x="68" y="12" width="10" height="22" rx="3" />
+              </g>
+            </g>
           </svg>
         </button>
       )}
