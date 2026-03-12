@@ -84,6 +84,7 @@ button:focus-visible {
   color: #e0f2fe;
   touch-action: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
   box-shadow:
     0 0 12px rgba(14, 165, 233, 0.55),
     0 0 22px rgba(29, 78, 216, 0.35);
@@ -91,6 +92,12 @@ button:focus-visible {
 
 .debug-fab-icon {
   display: block;
+}
+
+.debug-fab:focus,
+.debug-fab:focus-visible {
+  outline: none !important;
+  border: none !important;
 }
 
 .debug-fab:active {
