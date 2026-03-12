@@ -5,8 +5,8 @@ function App() {
   const [count, setCount] = useState(0)
   const [isErudaOpen, setIsErudaOpen] = useState(false)
   const [fabPos, setFabPos] = useState(() => ({
-    x: Math.max(12, (window.innerWidth || 390) - 140),
-    y: Math.max(12, (window.innerHeight || 844) - 70),
+    x: Math.max(12, (window.innerWidth || 390) - 56),
+    y: Math.max(12, (window.innerHeight || 844) - 56),
   }))
 
   const dragRef = useRef({ dragging: false, moved: false, offsetX: 0, offsetY: 0 })
@@ -20,7 +20,7 @@ function App() {
   }, [])
 
   const clampFab = (x, y) => {
-    const btnWidth = 120
+    const btnWidth = 44
     const btnHeight = 44
     const maxX = Math.max(12, window.innerWidth - btnWidth - 12)
     const maxY = Math.max(12, window.innerHeight - btnHeight - 12)
@@ -120,8 +120,10 @@ function App() {
           onPointerMove={onFabPointerMove}
           onPointerUp={onFabPointerUp}
           onClick={toggleEruda}
+          aria-label={isErudaOpen ? '디버그 닫기' : '디버그 열기'}
+          title={isErudaOpen ? '디버그 닫기' : '디버그 열기'}
         >
-          {isErudaOpen ? '디버그 닫기' : '디버그 열기'}
+          <span className="debug-fab-icon">🛠️</span>
         </button>
       )}
     </main>

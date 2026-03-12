@@ -71,7 +71,13 @@ button:focus-visible {
 .debug-fab {
   position: fixed;
   z-index: 10000001;
-  border-radius: 999px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
   border: 1px solid #38bdf8;
   background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
   color: #e0f2fe;
@@ -81,6 +87,12 @@ button:focus-visible {
     0 0 0 1px rgba(56, 189, 248, 0.35),
     0 0 14px rgba(14, 165, 233, 0.7),
     0 0 24px rgba(29, 78, 216, 0.5);
+}
+
+.debug-fab-icon {
+  font-size: 18px;
+  line-height: 1;
+  transform: translateY(0.5px);
 }
 
 .debug-fab:active {
