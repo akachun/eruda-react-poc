@@ -58,7 +58,10 @@ function App() {
       </ul>
 
       {window.__ERUDA_ENABLED__ && (
-        <button className="debug-fab" onClick={toggleEruda}>
+        <button
+          className={`debug-fab ${isErudaOpen ? 'is-open' : ''}`}
+          onClick={toggleEruda}
+        >
           {isErudaOpen ? '디버그 닫기' : '디버그 열기'}
         </button>
       )}
