@@ -1,9 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
   const [isErudaOpen, setIsErudaOpen] = useState(false)
+  const [fabPos, setFabPos] = useState(() => ({
+    x: Math.max(12, (window.innerWidth || 390) - 140),
+    y: Math.max(12, (window.innerHeight || 844) - 70),
+  }))
+
+  const dragRef = useRef({ dragging: false, moved: false, offsetX: 0, offsetY: 0 })
+  const ignoreClickRef = useRef(false)
 
   useEffect(() => {
     if (!window.__ERUDA_ENABLED__ || !window.__ERUDA__) return
@@ -12,7 +19,55 @@ function App() {
     entryBtn?.hide()
   }, [])
 
+  const clampFab = (x, y) => {
+    const btnWidth = 120
+    const btnHeight = 44
+    const maxX = Math.max(12, window.innerWidth - btnWidth - 12)
+    const maxY = Math.max(12, window.innerHeight - btnHeight - 12)
+    return {
+      x: Math.min(maxX, Math.max(12, x)),
+      y: Math.min(maxY, Math.max(12, y)),
+    }
+  }
+
+  const onFabPointerDown = (e) => {
+    const target = e.currentTarget
+    const rect = target.getBoundingClientRect()
+
+    dragRef.current.dragging = true
+    dragRef.current.moved = false
+    dragRef.current.offsetX = e.clientX - rect.left
+    dragRef.current.offsetY = e.clientY - rect.top
+
+    target.setPointerCapture?.(e.pointerId)
+  }
+
+  const onFabPointerMove = (e) => {
+    if (!dragRef.current.dragging) return
+
+    const nextX = e.clientX - dragRef.current.offsetX
+    const nextY = e.clientY - dragRef.current.offsetY
+
+    const clamped = clampFab(nextX, nextY)
+    setFabPos(clamped)
+    dragRef.current.moved = true
+  }
+
+  const onFabPointerUp = (e) => {
+    if (dragRef.current.moved) {
+      ignoreClickRef.current = true
+      setTimeout(() => {
+        ignoreClickRef.current = false
+      }, 0)
+    }
+
+    dragRef.current.dragging = false
+    dragRef.current.moved = false
+    e.currentTarget.releasePointerCapture?.(e.pointerId)
+  }
+
   const toggleEruda = () => {
+    if (ignoreClickRef.current) return
     if (!window.__ERUDA_ENABLED__ || !window.__ERUDA__) return
 
     if (isErudaOpen) {
@@ -60,6 +115,10 @@ function App() {
       {window.__ERUDA_ENABLED__ && (
         <button
           className={`debug-fab ${isErudaOpen ? 'is-open' : ''}`}
+          style={{ left: `${fabPos.x}px`, top: `${fabPos.y}px` }}
+          onPointerDown={onFabPointerDown}
+          onPointerMove={onFabPointerMove}
+          onPointerUp={onFabPointerUp}
           onClick={toggleEruda}
         >
           {isErudaOpen ? '디버그 닫기' : '디버그 열기'}

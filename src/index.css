@@ -70,22 +70,17 @@ button:focus-visible {
 /* Custom debug FAB (Shadow DOM on: style app button instead of eruda internals) */
 .debug-fab {
   position: fixed;
-  right: 16px;
-  bottom: 16px;
   z-index: 10000001;
   border-radius: 999px;
   border: 1px solid #38bdf8;
   background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
   color: #e0f2fe;
+  touch-action: none;
+  user-select: none;
   box-shadow:
     0 0 0 1px rgba(56, 189, 248, 0.35),
     0 0 14px rgba(14, 165, 233, 0.7),
     0 0 24px rgba(29, 78, 216, 0.5);
-}
-
-.debug-fab.is-open {
-  bottom: auto;
-  top: 16px;
 }
 
 .debug-fab:active {
