@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
+import type { PointerEvent as ReactPointerEvent } from 'react'
 import './App.css'
+
+type FabPos = { x: number; y: number }
 
 function App() {
   const [count, setCount] = useState(0)
   const [isErudaOpen, setIsErudaOpen] = useState(false)
-  const [fabPos, setFabPos] = useState(() => ({
+  const [fabPos, setFabPos] = useState<FabPos>(() => ({
     x: Math.max(12, (window.innerWidth || 390) - 56),
     y: Math.max(12, (window.innerHeight || 844) - 56),
   }))
@@ -16,10 +19,10 @@ function App() {
     if (!window.__ERUDA_ENABLED__ || !window.__ERUDA__) return
 
     const entryBtn = window.__ERUDA__.get('entryBtn')
-    entryBtn?.hide()
+    entryBtn?.hide?.()
   }, [])
 
-  const clampFab = (x, y) => {
+  const clampFab = (x: number, y: number): FabPos => {
     const btnWidth = 44
     const btnHeight = 44
     const maxX = Math.max(12, window.innerWidth - btnWidth - 12)
@@ -30,7 +33,7 @@ function App() {
     }
   }
 
-  const onFabPointerDown = (e) => {
+  const onFabPointerDown = (e: ReactPointerEvent<HTMLButtonElement>) => {
     const target = e.currentTarget
     const rect = target.getBoundingClientRect()
 
@@ -42,7 +45,7 @@ function App() {
     target.setPointerCapture?.(e.pointerId)
   }
 
-  const onFabPointerMove = (e) => {
+  const onFabPointerMove = (e: ReactPointerEvent<HTMLButtonElement>) => {
     if (!dragRef.current.dragging) return
 
     const nextX = e.clientX - dragRef.current.offsetX
@@ -53,7 +56,7 @@ function App() {
     dragRef.current.moved = true
   }
 
-  const onFabPointerUp = (e) => {
+  const onFabPointerUp = (e: ReactPointerEvent<HTMLButtonElement>) => {
     if (dragRef.current.moved) {
       ignoreClickRef.current = true
       setTimeout(() => {
