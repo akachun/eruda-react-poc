@@ -8,8 +8,10 @@ const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
 const forceDebug = new URLSearchParams(window.location.search).get('debug') === '1'
 
 if (isMobile || forceDebug) {
-  eruda.init()
-  console.log('[Eruda] mobile debug console enabled')
+  eruda.init({
+    useShadowDom: false,
+  })
+  console.log('[Eruda] mobile debug console enabled (shadow dom off)')
 }
 
 createRoot(document.getElementById('root')).render(
